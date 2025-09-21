@@ -73,6 +73,10 @@ mono_crash.*
 *.unitypackage.meta
 *.app
 
+# VSCode and JetBrains IDEs
+.vscode/
+.idea/
+
 # Crashlytics generated file
 crashlytics-build.properties
 
