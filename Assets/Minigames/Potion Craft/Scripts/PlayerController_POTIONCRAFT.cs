@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,18 +9,21 @@ using UnityEngine.InputSystem;
     and use the provided MinigameManager.cs class
 */
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))] // This component must be attached to the GameObject for input to register
 public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 {
-    private Rigidbody2D rb;
+    [SerializeField] float speed = 10f;
 
+    private Rigidbody rb;
+    private Vector3 input;
+    
     void Start()
     {
         // Subscribes this class to the minigame manager. This gives access to the
         // 'OnMinigameStart()' and 'OnTimerEnd()' functions. Otherwise, they won't be called.
         MinigameManager.Subscribe(this);
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void OnInteract(InputValue val)
@@ -36,8 +40,16 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         if (!MinigameManager.IsReady()) // IMPORTANT: Don't allow any input while the countdown is still occuring
             return;
 
-        Vector2 input = val.Get<Vector2>(); // Get the Vector2 that represents input
-        rb.linearVelocity = input * 5f; // 5f is a magic number; speed.
+        Vector2 ValInput = val.Get<Vector2>() * speed; // Get the Vector2 that represents input
+        input = new Vector3(ValInput.x, 0, ValInput.y); // map 2d vector to 3d vector
+        //rb.linearVelocity = input; // moving this to update so that linearVelocity is updated every frame instead of only on changes to movement input
+    }
+
+    private void Update()
+    {
+        // update movement
+        input.y = rb.linearVelocity.y; // avoid messing with gravity
+        rb.linearVelocity = input;
     }
 
     public void OnMinigameStart()
