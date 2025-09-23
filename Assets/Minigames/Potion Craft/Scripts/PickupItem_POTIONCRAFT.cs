@@ -11,21 +11,21 @@ public enum PotionType
 }
 public class PickupItem_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 {
-    public PotionType potionType = PotionType.Red;
+    public PotionType initialPotionType = PotionType.Red;
     bool playerInRange = false;
     bool pickedUp = false;
     public void OnMinigameStart()
     {
         Renderer renderer = GetComponent<Renderer>();
-        if (potionType == PotionType.Red)
+        if (initialPotionType == PotionType.Red)
         {
             renderer.material.color = Color.red;
         }
-        else if (potionType == PotionType.Green)
+        else if (initialPotionType == PotionType.Green)
         {
             renderer.material.color = Color.green;
         }
-        else if (potionType == PotionType.Blue)
+        else if (initialPotionType == PotionType.Blue)
         {
             renderer.material.color = Color.blue;
         }
