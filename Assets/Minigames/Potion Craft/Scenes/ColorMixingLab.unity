@@ -917,8 +917,8 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.55457044, g: 0.16745283, b: 0.6698113, a: 1}
-    - _Color: {r: 0.55457044, g: 0.16745278, b: 0.6698113, a: 1}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
@@ -1741,9 +1741,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 815103213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec7444f52480b34bbe4086389d7430c, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ed8f28fdec53b43bc5f05da540f0ad, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::colorMixing
+  m_EditorClassIdentifier: Assembly-CSharp::ColorMixing_POTIONCRAFT
 --- !u!1 &830973578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,7 +2115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d308916afc1f7db4ba0f7be1b342d390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetColor_POTIONCRAFT
-  color: {r: 0.55457044, g: 0.16745283, b: 0.6698113, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 1}
   reset_material: 0
 --- !u!33 &860812509
 MeshFilter:
@@ -2134,7 +2134,7 @@ Transform:
   m_GameObject: {fileID: 860812505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.76569, y: 0.52, z: -4.02}
+  m_LocalPosition: {x: 5.71, y: 0.52, z: -0.14}
   m_LocalScale: {x: 1.5657, y: 1.5657, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3396,7 +3396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d308916afc1f7db4ba0f7be1b342d390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetColor_POTIONCRAFT
-  color: {r: 0, g: 0, b: 0, a: 1}
+  color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   reset_material: 0
 --- !u!33 &1952823036
 MeshFilter:
@@ -3825,8 +3825,8 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+    - _Color: {r: 0.44339618, g: 0.44339618, b: 0.44339618, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

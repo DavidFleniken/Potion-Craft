@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(Renderer))]
-public class colorMixing : MonoBehaviour
+[RequireComponent(typeof(Renderer))]
+public class ColorMixing_POTIONCRAFT : MonoBehaviour
 {
     // Unsure if this script will be used, or if some elements will be copy-pasted into a different script (like a cauldron.cs script or something)
     // Basic idea is to average the color of gameobject this is attached to with input color - maybe except when white (inital color) in which case 
@@ -34,14 +34,8 @@ public class colorMixing : MonoBehaviour
         if (curColor.Equals(Color.white))
         {
             resetColors();
-            colors.Add (newColor);
+            colors.Add(newColor);
             material.color = newColor;
-        }
-        else if (newColor.Equals(Color.black))
-        {
-            Debug.Log("Hit Black");
-            // if new color is black then skip
-            return;
         }
         else
         {
@@ -172,7 +166,7 @@ public class colorMixing : MonoBehaviour
 
         float avg;
 
-        
+
         avg = (Mathf.Atan2(avgY, avgX)) / (2f * Mathf.PI);
         if (avg < 0f) avg += 1f; // wrap around
 
