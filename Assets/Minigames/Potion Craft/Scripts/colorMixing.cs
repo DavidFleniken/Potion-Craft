@@ -30,26 +30,55 @@ public class colorMixing : MonoBehaviour
         Color curColor = material.color;
         colors.Add(newColor);
 
-        // if white (has had no color yet), just become new color
+        // if has had no color yet, just become new color
         if (curColor.Equals(Color.white))
         {
+            resetColors();
+            colors.Add (newColor);
             material.color = newColor;
         }
-        else if (newColor.Equals(Color.white))
+        else if (newColor.Equals(Color.black))
         {
-            Debug.Log("Hit White");
-            // if new color is white then skip
-            //return;
-            // or make white. IDK which one to do, for testing reasons im gonna do make white
-            material.color = Color.white;
-            colors.Clear();
+            Debug.Log("Hit Black");
+            // if new color is black then skip
+            return;
         }
         else
         {
             // average colors
-            material.color = averageColors(colors);
+            //material.color = averageColors(colors);
+            material.color = averageRGB(colors);
+
         }
 
+    }
+
+    private void resetColors()
+    {
+        material.color = Color.white;
+        colors.Clear();
+    }
+
+    // going to try rgb averaging again but with manually setting saturation to max each time
+    private Color averageRGB(List<Color> lst)
+    {
+        float r = 0, g = 0, b = 0;
+
+        for (int i = 0; i < lst.Count; i++)
+        {
+            r += lst[i].r;
+            g += lst[i].g;
+            b += lst[i].b;
+        }
+
+        r /= lst.Count;
+        g /= lst.Count;
+        b /= lst.Count;
+
+        Color newCol = new Color(r, g, b);
+        Color.RGBToHSV(newCol, out float h, out float s, out float v);
+        newCol = Color.HSVToRGB(h, s, 1f);
+        return newCol;
     }
 
     private Color averageColors(List<Color> lst)
@@ -153,7 +182,8 @@ public class colorMixing : MonoBehaviour
     //TEMP METHOD FOR TESTING - REMOVE BEFORE TURNING IN
     private void OnTriggerEnter(Collider other)
     {
-        addColor(other.gameObject.GetComponent<Renderer>().material.color);
+        if (other.tag == "reset") resetColors();
+        else addColor(other.gameObject.GetComponent<Renderer>().material.color);
     }
 
 }
