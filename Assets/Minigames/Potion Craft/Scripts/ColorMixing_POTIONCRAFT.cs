@@ -176,8 +176,8 @@ public class ColorMixing_POTIONCRAFT : MonoBehaviour
     //TEMP METHOD FOR TESTING - REMOVE BEFORE TURNING IN
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "reset") resetColors();
-        else addColor(other.gameObject.GetComponent<Renderer>().material.color);
+        //if (other.tag == "reset") resetColors();
+        //else addColor(other.gameObject.GetComponent<Renderer>().material.color);
     }
 
 }

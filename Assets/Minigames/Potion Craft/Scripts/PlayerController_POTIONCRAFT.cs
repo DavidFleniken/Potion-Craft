@@ -22,6 +22,9 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 
     private Rigidbody rb;
     private Vector3 input;
+    private Vector2 ValInput;
+    private Vector2 lastInput;
+    private int framesSinceChange;
     
     void Start()
     {
@@ -74,26 +77,45 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         if (!MinigameManager.IsReady()) // IMPORTANT: Don't allow any input while the countdown is still occuring
             return;
 
-        Vector2 ValInput = val.Get<Vector2>() * speed; // Get the Vector2 that represents input
-        input = new Vector3(ValInput.x, 0, ValInput.y); // map 2d vector to 3d vector
-        if (ValInput.magnitude > 0.1f)
-        {
-            // Calculate angle in degrees (0° = forward, 90° = right, etc.)
-            float angle = Mathf.Atan2(ValInput.x, ValInput.y) * Mathf.Rad2Deg;
-        
-            // Snap to 8 directions (optional, remove for smooth rotation)
-            angle = Mathf.Round(angle / 45f) * 45f;
-        
-            transform.rotation = Quaternion.Euler(0, angle, 0);
-        }
-        //rb.linearVelocity = input; // moving this to update so that linearVelocity is updated every frame instead of only on changes to movement input
+        ValInput = val.Get<Vector2>() * speed; // Get the Vector2 that represents input
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // update movement
-        input.y = rb.linearVelocity.y; // avoid messing with gravity
-        rb.linearVelocity = input;
+        // Create buffer since otherwise ending on a diagonal is impossible
+        if (ValInput != lastInput)
+        {
+            if (framesSinceChange == 1)
+            {
+                framesSinceChange = 0;
+                lastInput = ValInput;
+            }
+            else
+            {
+                framesSinceChange++;
+            }
+        }
+        else 
+        {
+
+            input = new Vector3(ValInput.x, 0, ValInput.y); // map 2d vector to 3d vector
+
+            // update movement
+            input.y = rb.linearVelocity.y; // avoid messing with gravity
+            rb.linearVelocity = input;
+
+            if (ValInput.magnitude > 0.1f)
+            {
+                // Calculate angle in degrees (0° = forward, 90° = right, etc.)
+                float angle = Mathf.Atan2(ValInput.x, ValInput.y) * Mathf.Rad2Deg;
+
+                // Snap to 8 directions (optional, remove for smooth rotation)
+                angle = Mathf.Round(angle / 45f) * 45f;
+
+                transform.rotation = Quaternion.Euler(0, angle, 0);
+                //Debug.Log("Angle: " + angle + "\nInput: " + input);
+            }
+        }
     }
 
     public void OnMinigameStart()
