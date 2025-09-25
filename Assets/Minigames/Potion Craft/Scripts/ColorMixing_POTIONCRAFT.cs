@@ -47,7 +47,7 @@ public class ColorMixing_POTIONCRAFT : MonoBehaviour
 
     }
 
-    private void resetColors()
+    public void resetColors()
     {
         material.color = Color.white;
         colors.Clear();
