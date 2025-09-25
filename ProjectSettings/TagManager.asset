@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Item
+  - reset
+  - Cauldron
   layers:
   - Default
   - TransparentFX

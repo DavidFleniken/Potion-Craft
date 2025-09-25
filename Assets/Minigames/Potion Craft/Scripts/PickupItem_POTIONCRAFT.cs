@@ -11,24 +11,31 @@ public enum PotionType
 }
 public class PickupItem_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 {
-    public PotionType potionType = PotionType.Red;
+    public PotionType initialPotionType = PotionType.Red;
     bool playerInRange = false;
+
+    bool cauldronInRange = false;
+    ColorMixing_POTIONCRAFT cauldronScript;
+    Color curColor;
+
     bool pickedUp = false;
     public void OnMinigameStart()
     {
         Renderer renderer = GetComponent<Renderer>();
-        if (potionType == PotionType.Red)
+        if (initialPotionType == PotionType.Red)
         {
             renderer.material.color = Color.red;
         }
-        else if (potionType == PotionType.Green)
+        else if (initialPotionType == PotionType.Green)
         {
             renderer.material.color = Color.green;
         }
-        else if (potionType == PotionType.Blue)
+        else if (initialPotionType == PotionType.Blue)
         {
             renderer.material.color = Color.blue;
         }
+
+        curColor = renderer.material.color;
     }
 
     public void OnTimerEnd()
@@ -52,9 +59,23 @@ public class PickupItem_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
             else if(pickedUp && playerInventory.GetPotion() == gameObject)
             {
                 Debug.Log("Dropped off: " + tag);
-                transform.SetParent(null);
-                player.GetComponent<PlayerInventory_POTIONCRAFT>().SetPotion(null);
-                pickedUp = false;
+
+                if (cauldronInRange)
+                {
+                    if (cauldronScript == null) {
+                        Debug.LogError("Trying to call cauldron script, but its null"); 
+                        return; 
+                    }
+
+                    cauldronScript.addColor(curColor);
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    transform.SetParent(null);
+                    player.GetComponent<PlayerInventory_POTIONCRAFT>().SetPotion(null);
+                    pickedUp = false;
+                }                    
             }
         }
     }
@@ -84,6 +105,11 @@ public class PickupItem_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         {
             playerInRange = true;
         }
+        else if (other.CompareTag("Cauldron"))
+        {
+            cauldronInRange = true;
+            cauldronScript = other.GetComponent<ColorMixing_POTIONCRAFT>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -91,6 +117,11 @@ public class PickupItem_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+        }
+        else if (other.CompareTag("Cauldron"))
+        {
+            cauldronInRange = false;
+            cauldronScript = null;
         }
     }
 }
