@@ -11,12 +11,9 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))] // This component must be attached to the GameObject for input to register
+[RequireComponent(typeof(PlayerInventory_POTIONCRAFT))]
 public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 {
-    //make events that other scripts can subscribe to, keeps code cleaner
-    public static event System.Action<GameObject> OnInteractPressed;
-    public static event System.Action<GameObject> OnInteractReleased;
-    
     [SerializeField] float speed = 10f;
     [SerializeField] float interactRange = 3f;
 
@@ -25,6 +22,9 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
     private Vector2 ValInput;
     private Vector2 lastInput;
     private int framesSinceChange;
+    private PlayerInventory_POTIONCRAFT inventory;
+    private float durationBetweenPresses = 0.0f;
+    private bool waitingForSecondPress = false;
     
     void Start()
     {
@@ -32,27 +32,87 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         // 'OnMinigameStart()' and 'OnTimerEnd()' functions. Otherwise, they won't be called.
         MinigameManager.Subscribe(this);
         rb = GetComponent<Rigidbody>();
+        inventory = GetComponent<PlayerInventory_POTIONCRAFT>();
+    }
+
+    private bool PickupPotion()
+    {
+        GameObject closestPotion = FindClosestPotion();
+        if (closestPotion != null)
+        {
+            PickupItem_POTIONCRAFT potionScript = closestPotion.GetComponent<PickupItem_POTIONCRAFT>();
+            potionScript.HandleInteractPickup(transform);
+            inventory.SetPotion(closestPotion);
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool DropPotion()
+    {
+        GameObject currentPotion = inventory.GetPotion();
+        PickupItem_POTIONCRAFT potionScript = currentPotion.GetComponent<PickupItem_POTIONCRAFT>();
+        if (currentPotion != null)
+        {
+            potionScript.HandleInteractDrop();
+            //only set potion to null in update when out of duration,
+            //we handle the drop but we can still throw hence we need the reference
+            return true;
+        }
+        return false;
+    }
+
+    private bool ThrowPotion()
+    {
+        GameObject currentPotion = inventory.GetPotion();
+        if (currentPotion != null)
+        {
+            currentPotion.GetComponent<ThrowCurrentItem_POTIONCRAFT>().ThrowPotion(transform);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+    private void HandlePress()
+    {
+        GameObject currentPotion = inventory.GetPotion();
+
+        if (currentPotion == null && !waitingForSecondPress)
+        {
+            PickupPotion();
+            return;
+        }
+
+        if (!waitingForSecondPress && currentPotion != null)
+        {
+            if (DropPotion())
+            {
+                durationBetweenPresses = 0f;
+                waitingForSecondPress = true;
+            }
+        }
+        else if (waitingForSecondPress)
+        {
+            ThrowPotion();
+            durationBetweenPresses = 0f;
+        }
     }
 
     void OnInteract(InputValue val)
     {
         if (!MinigameManager.IsReady())
             return;
-            
-        if (val.isPressed)
-        {
-            GameObject closestPotion = FindClosestPotion();
-            if (closestPotion != null)
-            {
-                PickupItem_POTIONCRAFT potionScript = closestPotion.GetComponent<PickupItem_POTIONCRAFT>();
-                if (potionScript != null)
-                {
-                    potionScript.HandleInteractPressed(gameObject);
-                }
-            }
-        }
 
+        if (val.isPressed && val.Get<float>() > 0) 
+        {
+            HandlePress();
+        }
     }
+
     GameObject FindClosestPotion()
     {
         GameObject[] potions = GameObject.FindGameObjectsWithTag("Item");
@@ -82,6 +142,17 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 
     private void FixedUpdate()
     {
+        if (waitingForSecondPress)
+        {
+            durationBetweenPresses += Time.fixedDeltaTime;
+
+            if (durationBetweenPresses > 0.5f)
+            {
+                waitingForSecondPress = false;
+                durationBetweenPresses = 0f;
+                inventory.SetPotion(null);
+            }
+        }
         // Create buffer since otherwise ending on a diagonal is impossible
         if (ValInput != lastInput)
         {
