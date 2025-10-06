@@ -6,6 +6,7 @@ public class Costumer_POTIONCRAFT : MonoBehaviour
 {
     public int difficultySteps = 2;
     [SerializeField] bool newColor = false;
+    public Color goalColor;
 
     ColorMixing_POTIONCRAFT mixing;
     private void Start()
@@ -43,6 +44,8 @@ public class Costumer_POTIONCRAFT : MonoBehaviour
                     break;
             }
         }
+
+        goalColor = GetComponent<Renderer>().material.color;
 
     }
 
