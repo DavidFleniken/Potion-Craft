@@ -8,9 +8,9 @@ public class PlayerInventory_POTIONCRAFT : MonoBehaviour
     {
         currentPotion = potion;
     }
-
     public GameObject GetPotion()
     {
         return currentPotion;
     }
+
 }

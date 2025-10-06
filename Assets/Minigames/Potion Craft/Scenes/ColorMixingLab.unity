@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
       value: 2
@@ -365,6 +369,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
       value: 3
@@ -425,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 1472998522816980051, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8880427822164956358, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: m_Name
@@ -696,6 +708,7 @@ GameObject:
   - component: {fileID: 697189209}
   - component: {fileID: 697189208}
   - component: {fileID: 697189207}
+  - component: {fileID: 697189211}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -796,6 +809,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &697189211
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697189206}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &719113724
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +850,7 @@ GameObject:
   - component: {fileID: 719113727}
   - component: {fileID: 719113726}
   - component: {fileID: 719113725}
+  - component: {fileID: 719113731}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Cauldron
@@ -937,6 +978,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &719113731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719113724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dc13d712ac3450786867351b768949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionCauldron_POTIONCRAFT
 --- !u!1001 &735367908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1089,6 +1142,7 @@ GameObject:
   - component: {fileID: 815103216}
   - component: {fileID: 815103215}
   - component: {fileID: 815103214}
+  - component: {fileID: 815103222}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1130,7 +1184,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -1271,6 +1325,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815103222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815103213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6861cc23fd7488388027706ffa3963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThrowCurrentItem_POTIONCRAFT
+  aliveDuration: 2
+  forwardForce: 8
+  upwardForce: 3
 --- !u!1 &830973578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,6 +1515,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
       value: 3
@@ -1506,6 +1579,10 @@ PrefabInstance:
     - target: {fileID: 1472998522816980051, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
@@ -1854,6 +1931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
       value: 2
@@ -1914,6 +1995,10 @@ PrefabInstance:
     - target: {fileID: 1472998522816980051, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
@@ -1976,6 +2061,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
       value: 2
@@ -2036,6 +2125,10 @@ PrefabInstance:
     - target: {fileID: 1472998522816980051, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560444776506432507, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
+      propertyPath: initialPotionType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6120547508669367648, guid: 7321a375bdd9f4bb1ba58c660785b3f8, type: 3}
       propertyPath: initialPotionType
