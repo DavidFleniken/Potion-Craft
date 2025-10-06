@@ -16,6 +16,12 @@ public class Costumer_POTIONCRAFT : MonoBehaviour
         
     }
 
+    // overload for using "default" number of steps 
+    public void generateColor()
+    {
+        generateColor(difficultySteps);
+    }
+
     public void generateColor(int steps)
     {
         // clear old color

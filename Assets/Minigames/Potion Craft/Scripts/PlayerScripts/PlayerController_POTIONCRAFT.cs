@@ -109,7 +109,14 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 
         if (val.isPressed && val.Get<float>() > 0) 
         {
-            HandlePress();
+            if (SubmitPotion_POTIONCRAFT.CanInteract())
+            {
+                SubmitPotion_POTIONCRAFT.submitPotion();
+            }
+            else
+            {
+                HandlePress();
+            }
         }
     }
 
