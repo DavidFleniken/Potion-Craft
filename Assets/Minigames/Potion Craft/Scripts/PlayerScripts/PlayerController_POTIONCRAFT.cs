@@ -16,6 +16,7 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
 {
     [SerializeField] float speed = 10f;
     [SerializeField] float interactRange = 3f;
+    [SerializeField] float timeBetweenDoubleClick = 0.5f;
 
     private Rigidbody rb;
     private Vector3 input;
@@ -158,7 +159,7 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         {
             durationBetweenPresses += Time.fixedDeltaTime;
 
-            if (durationBetweenPresses > 0.5f)
+            if (durationBetweenPresses > timeBetweenDoubleClick)
             {
                 waitingForSecondPress = false;
                 durationBetweenPresses = 0f;
