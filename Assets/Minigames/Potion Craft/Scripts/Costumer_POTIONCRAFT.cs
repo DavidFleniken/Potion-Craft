@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ColorMixing_POTIONCRAFT))]
 public class Costumer_POTIONCRAFT : MonoBehaviour
 {
     public int difficultySteps = 2;
+    public Image image;
     [SerializeField] bool newColor = false;
     public Color goalColor;
 
@@ -52,6 +54,7 @@ public class Costumer_POTIONCRAFT : MonoBehaviour
         }
 
         goalColor = GetComponent<Renderer>().material.color;
+        image.color = goalColor;
 
     }
 
