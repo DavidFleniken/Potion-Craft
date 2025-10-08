@@ -113,6 +113,11 @@ public class PlayerController_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
             {
                 SubmitPotion_POTIONCRAFT.submitPotion();
             }
+
+            if (ResetCauldron_POTIONCRAFT.CanInteract())
+            {
+                ResetCauldron_POTIONCRAFT.ResetPotion();
+            }
             else
             {
                 HandlePress();

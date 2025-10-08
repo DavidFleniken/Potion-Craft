@@ -13,7 +13,8 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
     // how many coins per percentage. EX) if 20, for every 20% accurate, get a coin, so 100% = 5 coins, etc
     [SerializeField] static float conversion = 20f;
 
-    static int totalCoins = 0;
+    public static int totalCoins = 0;
+    public static int coinsToWin = 20;
     static bool canInteract = false;
 
     private void Start()
