@@ -20,7 +20,11 @@ public class ThrowCurrentItem_POTIONCRAFT : MonoBehaviour
     public void ThrowPotion(Transform playerTransform)
     {
         Debug.Log("Throw!");
-        if (!rb) return;
+        if (!rb)
+        {
+            Debug.LogError("No rigidbody!");
+            return;
+        }
 
         rb.isKinematic = false;
         rb.linearVelocity = Vector3.zero;
@@ -46,6 +50,7 @@ public class ThrowCurrentItem_POTIONCRAFT : MonoBehaviour
 
         if (durationThrown >= aliveDuration)
         {
+            Debug.Log("destroying");
             Destroy(gameObject);
         }
     }
