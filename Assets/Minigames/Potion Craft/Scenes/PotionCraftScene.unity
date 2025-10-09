@@ -2739,7 +2739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController_POTIONCRAFT
   speed: 5
   interactRange: 2
-  timeBetweenDoubleClick: 0.5
+  timeBetweenDoubleClick: 0.2
 --- !u!33 &815103220
 MeshFilter:
   m_ObjectHideFlags: 0
