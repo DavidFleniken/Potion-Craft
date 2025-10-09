@@ -13,6 +13,20 @@ public class ItemProperties_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
     public PotionType initialPotionType = PotionType.Red;
     public void OnMinigameStart()
     {
+        
+    }
+
+    public void OnTimerEnd()
+    {
+        
+    }
+    public Color GetColor()
+    {
+        return curColor;
+    }
+    void Start()
+    {
+        MinigameManager.Subscribe(this);
         Renderer renderer = GetComponent<Renderer>();
         if (initialPotionType == PotionType.Red)
         {
@@ -28,18 +42,5 @@ public class ItemProperties_POTIONCRAFT : MonoBehaviour, MinigameSubscriber
         }
 
         curColor = renderer.material.color;
-    }
-
-    public void OnTimerEnd()
-    {
-        
-    }
-    public Color GetColor()
-    {
-        return curColor;
-    }
-    void Start()
-    {
-        MinigameManager.Subscribe(this);
     }
 }
