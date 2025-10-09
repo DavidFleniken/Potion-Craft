@@ -20,11 +20,9 @@ public class ThrowCurrentItem_POTIONCRAFT : MonoBehaviour
     public void ThrowPotion(Transform playerTransform)
     {
         Debug.Log("Throw!");
-        if (!rb)
-        {
-            Debug.LogError("No rigidbody!");
-            return;
-        }
+        if (!rb) return;
+        
+        transform.position += Vector3.up * 0.5f;
 
         rb.isKinematic = false;
         rb.linearVelocity = Vector3.zero;
