@@ -4,11 +4,9 @@ public class Spawner_POTIONCRAFT : MonoBehaviour
 {
     public PotionType potionType;
     public GameObject prefab;
-    private ItemProperties_POTIONCRAFT properties;
+
     void Start()
     {
-        properties = prefab.GetComponent<ItemProperties_POTIONCRAFT>();
-        properties.initialPotionType = potionType;
         SpawnPotion();
     }
 
@@ -22,9 +20,8 @@ public class Spawner_POTIONCRAFT : MonoBehaviour
 
     private void SpawnPotion()
     {
-        GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
-        
-        obj.SetActive(true);
+        GameObject instance = Instantiate(prefab, transform.position + Vector3.up * 0.2f, Quaternion.identity);
+        var props = instance.GetComponent<ItemProperties_POTIONCRAFT>();
+        props.initialPotionType = potionType;
     }
-
 }

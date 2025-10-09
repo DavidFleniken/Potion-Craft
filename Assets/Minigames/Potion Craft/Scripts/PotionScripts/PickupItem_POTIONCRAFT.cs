@@ -19,7 +19,7 @@ public class PickupItem_POTIONCRAFT : MonoBehaviour
     {
         transform.SetParent(null);
         Vector3 position = transform.position;
-        position.y = 0.5f;
+        position.y = 0.2f;
         transform.position = position;
         Debug.Log("Dropped off: " + tag);
         itemDropped = true;
