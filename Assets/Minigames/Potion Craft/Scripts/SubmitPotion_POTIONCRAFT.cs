@@ -52,17 +52,29 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
 
         int addedCoins = (int)(accuracy / conversion);
 
-        Debug.Log("Vector: " + accuracyVec + "\nAccuracy: " + accuracy + "\nCoins: " + addedCoins);
-        totalCoins += addedCoins;
+        //Debug.Log("Vector: " + accuracyVec + "\nAccuracy: " + accuracy + "\nCoins: " + addedCoins);
 
         if (accuracy == 100)
         {
             //perfect bonus
             totalCoins += (int)(addedCoins * 0.5);
         }
+        else if (accuracy <= 35)
+        {
+            addedCoins = 0;
+            Strikes_POTIONCRAFT.addStrike();
+        }
+
+        totalCoins += addedCoins;
+
 
         cauldron.resetColors();
         costumer.generateColor();
+
+        if (totalCoins >= coinsToWin)
+        {
+            MinigameManager.SetStateToSuccess();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
