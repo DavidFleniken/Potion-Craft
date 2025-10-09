@@ -48,6 +48,7 @@ public class ThrowCurrentItem_POTIONCRAFT : MonoBehaviour
 
         if (durationThrown >= aliveDuration)
         {
+            Debug.Log("destroying");
             Destroy(gameObject);
         }
     }

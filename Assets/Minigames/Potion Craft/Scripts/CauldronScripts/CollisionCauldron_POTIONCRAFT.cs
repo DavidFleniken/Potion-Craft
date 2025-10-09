@@ -11,6 +11,7 @@ public class CollisionCauldron_POTIONCRAFT : MonoBehaviour
         if (itemDropped || itemThrown)
         {
             GetComponent<ColorMixing_POTIONCRAFT>().addColor(item.GetComponent<ItemProperties_POTIONCRAFT>().GetColor());
+            Debug.Log("Destroy 2");
             Destroy(item.gameObject);
         }
     }
