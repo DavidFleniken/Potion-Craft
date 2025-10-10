@@ -27,11 +27,17 @@ public class ItemCollision_POTIONCRAFT : MonoBehaviour
             {
                 if (other.CompareTag("Cauldron"))
                 {
-                    Instantiate(mistEffectPrefab, transform.position, Quaternion.identity);
+                    GameObject obj = Instantiate(mistEffectPrefab, transform.position, Quaternion.identity);
+                    var ps = obj.GetComponent<ParticleSystem>();
+                    var main = ps.main;
+                    main.startColor = GetComponent<Renderer>().material.color;
                 }
                 else
                 {
-                    Instantiate(splashEffectPrefab, transform.position, Quaternion.identity);
+                    GameObject obj = Instantiate(splashEffectPrefab, transform.position, Quaternion.identity);
+                    var ps = obj.GetComponent<ParticleSystem>();
+                    var main = ps.main;
+                    main.startColor = GetComponent<Renderer>().material.color;
                 }
                 Destroy(gameObject, destroyDelay);
                 return;
