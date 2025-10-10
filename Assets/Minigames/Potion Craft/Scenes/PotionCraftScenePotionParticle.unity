@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 187452041}
   - component: {fileID: 187452040}
   m_Layer: 0
-  m_Name: lever arm
+  m_Name: lever_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,13 +616,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187452038}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000008940697, y: -0.7071068, z: -0.000000029802322, w: -0.7071068}
+  m_LocalRotation: {x: 0.27059805, y: 0.6532815, z: -0.27059805, w: 0.6532815}
   m_LocalPosition: {x: 0.4527321, y: 0, z: 0}
   m_LocalScale: {x: 0.65481067, y: 0.29856044, z: 0.22579762}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1687061220}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 90, z: 0}
 --- !u!23 &187452040
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3550,6 +3550,7 @@ GameObject:
   - component: {fileID: 1037286744}
   - component: {fileID: 1037286743}
   - component: {fileID: 1037286742}
+  - component: {fileID: 1037286747}
   m_Layer: 0
   m_Name: ResetLever
   m_TagString: Untagged
@@ -3570,6 +3571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetCauldron_POTIONCRAFT
   colorMixer_editor: {fileID: 719113729}
+  animation_editor: {fileID: 1037286747}
 --- !u!135 &1037286743
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3663,6 +3665,18 @@ Transform:
   - {fileID: 1687061220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1037286747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037286741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e2a0b3f149942c19dc239f1d11ec1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeverAnimation_POTIONCRAFT
 --- !u!1 &1086998677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,6 +3690,7 @@ GameObject:
   - component: {fileID: 1086998680}
   - component: {fileID: 1086998679}
   - component: {fileID: 1086998678}
+  - component: {fileID: 1086998683}
   m_Layer: 0
   m_Name: SubmitLever
   m_TagString: Untagged
@@ -3790,6 +3805,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SubmitPotion_POTIONCRAFT
   cauldron_editor: {fileID: 719113729}
   costumer_editor: {fileID: 436002224}
+  animation_editor: {fileID: 1086998683}
+--- !u!114 &1086998683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086998677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e2a0b3f149942c19dc239f1d11ec1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeverAnimation_POTIONCRAFT
 --- !u!1001 &1132019939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4936,7 +4964,7 @@ GameObject:
   - component: {fileID: 1687061222}
   - component: {fileID: 1687061221}
   m_Layer: 0
-  m_Name: lever base (1)
+  m_Name: lever_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5755,7 +5783,7 @@ GameObject:
   - component: {fileID: 2681955792699920195}
   - component: {fileID: 920031146462415924}
   m_Layer: 0
-  m_Name: lever arm
+  m_Name: lever_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6161,13 +6189,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99708365186477792}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000008940697, y: -0.7071068, z: -0.000000029802322, w: -0.7071068}
+  m_LocalRotation: {x: 0.27059805, y: 0.6532815, z: -0.27059805, w: 0.6532815}
   m_LocalPosition: {x: 0.4527321, y: 0, z: 0}
   m_LocalScale: {x: 0.65481067, y: 0.29856044, z: 0.22579762}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3050777845215193421}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 90, z: 0}
 --- !u!33 &3294530621915035245
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6446,7 +6474,7 @@ GameObject:
   - component: {fileID: 8748236592171878933}
   - component: {fileID: 8230065073848984291}
   m_Layer: 0
-  m_Name: lever base
+  m_Name: lever_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
