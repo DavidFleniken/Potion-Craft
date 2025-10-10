@@ -4,15 +4,23 @@ public class ResetCauldron_POTIONCRAFT : MonoBehaviour
 {
     [SerializeField] ColorMixing_POTIONCRAFT colorMixer_editor;
     public static ColorMixing_POTIONCRAFT colorMixer;
+    [SerializeField] LeverAnimation_POTIONCRAFT animation_editor;
     static bool canInteract = false;
+    static LeverAnimation_POTIONCRAFT animation;
 
     void Start()
     {
         colorMixer = colorMixer_editor;
+        animation = animation_editor;
     }
     public static void ResetPotion()
     {
-        colorMixer.resetColors();
+        if (animation.Finished())
+        {
+            colorMixer.resetColors();
+            animation.PressLever();
+        }
+       
     }
     public static bool CanInteract()
     {
@@ -33,4 +41,5 @@ public class ResetCauldron_POTIONCRAFT : MonoBehaviour
             canInteract = false;
         }
     }
+    
 }

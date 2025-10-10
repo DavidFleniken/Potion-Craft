@@ -6,6 +6,9 @@ public class ItemCollision_POTIONCRAFT : MonoBehaviour
     private ThrowCurrentItem_POTIONCRAFT thrower;
     private PickupItem_POTIONCRAFT picker;
     private Collider collider;
+    [SerializeField] private GameObject splashEffectPrefab;
+    [SerializeField] private GameObject mistEffectPrefab;
+    [SerializeField] private float destroyDelay = 0.1f;
 
     [SerializeField] private float surfaceOffset = 0.02f; // small lift to avoid clipping
 
@@ -22,9 +25,24 @@ public class ItemCollision_POTIONCRAFT : MonoBehaviour
         {
             if (!(other.CompareTag("Item") || other.CompareTag("Player")))
             {
-                Destroy(gameObject);
+                if (other.CompareTag("Cauldron"))
+                {
+                    GameObject obj = Instantiate(mistEffectPrefab, transform.position, Quaternion.identity);
+                    var ps = obj.GetComponent<ParticleSystem>();
+                    var main = ps.main;
+                    main.startColor = GetComponent<Renderer>().material.color;
+                }
+                else
+                {
+                    GameObject obj = Instantiate(splashEffectPrefab, transform.position, Quaternion.identity);
+                    var ps = obj.GetComponent<ParticleSystem>();
+                    var main = ps.main;
+                    main.startColor = GetComponent<Renderer>().material.color;
+                }
+                Destroy(gameObject, destroyDelay);
                 return;
             }
+            
         }
 
         TrySnapToCounterTop(other);

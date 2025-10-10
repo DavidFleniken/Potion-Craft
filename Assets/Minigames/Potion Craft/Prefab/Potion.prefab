@@ -319,6 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e4fbb1478cd476db3096eed7f8769d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCollision_POTIONCRAFT
+  splashEffectPrefab: {fileID: 884908638763471949, guid: e4d4635e2cb604163ae72d9fef93053c, type: 3}
+  mistEffectPrefab: {fileID: 8071521619743237421, guid: 7cbc9d8eaac294b13a3b6acba721c566, type: 3}
+  destroyDelay: 0.1
+  surfaceOffset: 0.02
 --- !u!1 &5440157005780717060
 GameObject:
   m_ObjectHideFlags: 0
