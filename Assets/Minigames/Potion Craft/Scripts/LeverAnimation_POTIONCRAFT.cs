@@ -16,7 +16,7 @@ public class LeverAnimation_POTIONCRAFT : MonoBehaviour
             Transform child = transform.Find("lever_base");
             Transform arm = child.Find("lever_arm");
             Quaternion rotation = arm.rotation;
-            rotation.x += Time.deltaTime;
+            rotation.x -= Time.deltaTime;
             arm.rotation = rotation;
         }
         else if (duration > animationDuration && submitted)
@@ -24,7 +24,7 @@ public class LeverAnimation_POTIONCRAFT : MonoBehaviour
             Transform child = transform.Find("lever_base");
             Transform arm = child.Find("lever_arm");
             Quaternion rotation = arm.rotation;
-            rotation.x -= Time.deltaTime;
+            rotation.x += Time.deltaTime;
             arm.rotation = rotation;
         }
 
