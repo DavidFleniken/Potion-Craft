@@ -7,11 +7,13 @@ public class ResetCauldron_POTIONCRAFT : MonoBehaviour
     [SerializeField] LeverAnimation_POTIONCRAFT animation_editor;
     static bool canInteract = false;
     static LeverAnimation_POTIONCRAFT animation;
+    private static AudioSource audioSource;
 
     void Start()
     {
         colorMixer = colorMixer_editor;
         animation = animation_editor;
+        audioSource = GetComponent<AudioSource>();
     }
     public static void ResetPotion()
     {
@@ -19,6 +21,7 @@ public class ResetCauldron_POTIONCRAFT : MonoBehaviour
         {
             colorMixer.resetColors();
             animation.PressLever();
+            audioSource.Play();
         }
        
     }

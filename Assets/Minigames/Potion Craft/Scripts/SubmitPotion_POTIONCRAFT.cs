@@ -11,7 +11,6 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
     [SerializeField] LeverAnimation_POTIONCRAFT animation_editor;
 
     static SubmitPotion_POTIONCRAFT singleton = null;
-
     static ColorMixing_POTIONCRAFT cauldron;
     static Costumer_POTIONCRAFT costumer;
     static LeverAnimation_POTIONCRAFT animation;
@@ -21,6 +20,7 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
     static bool canInteract = false;
     public static int totalCoins = 0;
     public static int coinsToWin = 20;
+    private static AudioSource audioSource;
 
     private void Start()
     {
@@ -34,6 +34,7 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
         cauldron = cauldron_editor;
         costumer = costumer_editor;
         animation = animation_editor;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public static bool CanInteract()
@@ -48,6 +49,8 @@ public class SubmitPotion_POTIONCRAFT : MonoBehaviour
             return;
         }
         animation.PressLever();
+        audioSource.Play();
+        
         Color cauldronCol = cauldron.getColor();
         Color goalColor = costumer.goalColor;
 
