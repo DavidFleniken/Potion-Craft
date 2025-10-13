@@ -35,6 +35,7 @@ public class Strikes_POTIONCRAFT : MonoBehaviour
             case 3:
                 staticStrike3.SetActive(true);
                 MinigameManager.SetStateToFailure();
+                MinigameManager.EndGame();
                 break;
             default:
                 break;
