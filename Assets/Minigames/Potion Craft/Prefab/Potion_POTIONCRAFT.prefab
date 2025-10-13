@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 7031406563455697872}
   - component: {fileID: 1631989604073095171}
   m_Layer: 0
-  m_Name: Potion
+  m_Name: Potion_POTIONCRAFT
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

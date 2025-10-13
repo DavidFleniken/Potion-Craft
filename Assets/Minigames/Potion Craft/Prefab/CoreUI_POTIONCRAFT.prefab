@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7161296233837739961}
   - component: {fileID: 4027953640820552298}
   m_Layer: 5
-  m_Name: CoreUI
+  m_Name: CoreUI_POTIONCRAFT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
